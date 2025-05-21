@@ -1,6 +1,12 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/mavoomva/portfolio.mavoid.com/
-    - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp style.css $DEPLOYPATH
+    - echo "---- Starting deployment ----"
+    - export DEPLOYPATH=/home/mavoomva/portfolio.mavoid.com
+    - cd $DEPLOYPATH
+    - source ~/.nvm/nvm.sh
+    - nvm use 20
+    - npm install
+    - npm run build
+    - echo "✅ Build completed."
+    - echo "---- Deployment finished ----"
