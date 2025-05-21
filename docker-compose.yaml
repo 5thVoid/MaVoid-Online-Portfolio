@@ -1,0 +1,16 @@
+services:
+  art-frontend:
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8482:80"
+      - "4047:443"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
