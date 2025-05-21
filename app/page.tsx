@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Search } from "lucide-react"
 import NetworkBackground from "@/components/network-background"
 import Header from "@/components/header"
 import ProjectCard from "@/components/project-card"
@@ -9,12 +8,11 @@ import { projects, type Project } from "@/lib/data"
 
 export default function PortfolioPage() {
   const [selectedProject, setSelectedProject] = useState<string>("all")
-  const [searchQuery, setSearchQuery] = useState<string>("")
   const [visibleProjects, setVisibleProjects] = useState<Project[]>([])
   const [displayCount, setDisplayCount] = useState<number>(12)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  // Filter projects based on selected project and search query
+  // Filter projects based on selected project
   useEffect(() => {
     let filtered = [...projects]
 
@@ -22,15 +20,8 @@ export default function PortfolioPage() {
       filtered = filtered.filter((project) => project.category === selectedProject)
     }
 
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase()
-      filtered = filtered.filter(
-        (project) => project.title.toLowerCase().includes(query) || project.description.toLowerCase().includes(query),
-      )
-    }
-
     setVisibleProjects(filtered)
-  }, [selectedProject, searchQuery])
+  }, [selectedProject])
 
   // Handle infinite scroll
   const loadMoreProjects = () => {
@@ -69,8 +60,8 @@ export default function PortfolioPage() {
 
         <div className="container mx-auto px-4 py-8">
           {/* Filters */}
-          <div className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <div className="flex flex-wrap gap-2">
+          <div className="mb-12 flex justify-center">
+            <div className="flex flex-wrap gap-2 justify-center">
               {categories.map((category) => (
                 <button
                   key={category}
@@ -85,23 +76,14 @@ export default function PortfolioPage() {
                 </button>
               ))}
             </div>
-
-            <div className="relative w-full md:w-64">
-              <input
-                type="text"
-                placeholder="Search projects..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-800/50 border border-slate-700 rounded-lg py-2 pl-10 pr-4 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#5bbddf]/50"
-              />
-              <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
-            </div>
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {/* Masonry Layout using CSS columns */}
+          <div className="masonry-grid">
             {visibleProjects.slice(0, displayCount).map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <div key={project.id} className="masonry-item">
+                <ProjectCard project={project} />
+              </div>
             ))}
           </div>
 
@@ -116,7 +98,7 @@ export default function PortfolioPage() {
           {visibleProjects.length === 0 && (
             <div className="text-center py-16">
               <h3 className="text-xl text-white font-medium">No projects found</h3>
-              <p className="text-slate-400 mt-2">Try adjusting your search or filter criteria</p>
+              <p className="text-slate-400 mt-2">Try adjusting your filter criteria</p>
             </div>
           )}
 

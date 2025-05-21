@@ -4,34 +4,35 @@ import Link from "next/link"
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-20 backdrop-blur-md bg-[#0a1a2f]/80 border-b border-slate-800/50">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="relative w-10 h-10">
+    <div className="sticky top-0 z-20 px-4 py-6">
+      <div className="container mx-auto flex justify-between items-center relative">
+        {/* Logo on the left side */}
+        <Link href="https://mavoid.com/" className="flex items-center z-20">
+          <div className="relative w-20 h-20">
             <Image src="/logo.png" alt="Mavoid Logo" fill className="object-contain" priority />
           </div>
-          <span className="text-xl font-bold bg-gradient-to-r from-[#5bbddf] to-[#0055a4] bg-clip-text text-transparent">
-            MAVOID
-          </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6">
-          <NavLink href="/" active>
-            Portfolio
-          </NavLink>
-          <NavLink href="/about">About Us</NavLink>
-          <NavLink href="/services">Services</NavLink>
-          <NavLink href="/contact">Contact</NavLink>
-        </nav>
+        {/* Floating navbar in the center */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
+          <nav className="backdrop-blur-md bg-[#0c1220]/70 px-8 py-3 rounded-full border border-slate-700/20 shadow-lg">
+            <div className="flex items-center gap-8">
+              <NavLink href="/" active>
+                Portfolio
+              </NavLink>
+            </div>
+          </nav>
+        </div>
 
+        {/* Get in Touch button on the right side */}
         <Link
-          href="/contact"
-          className="bg-[#2a9ed9] hover:bg-[#0055a4] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+          href="https://mavoid.com/contactus"
+          className="bg-transparent hover:bg-[#2a9ed9]/10 text-[#5bbddf] border border-[#5bbddf] px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 z-20"
         >
           Get in Touch
         </Link>
       </div>
-    </header>
+    </div>
   )
 }
 
@@ -39,7 +40,7 @@ function NavLink({ href, children, active = false }: { href: string; children: R
   return (
     <Link
       href={href}
-      className={`text-sm font-medium transition-colors ${active ? "text-white" : "text-slate-300 hover:text-white"}`}
+      className={`text-sm font-medium transition-colors ${active ? "text-[#5bbddf]" : "text-slate-300 hover:text-[#5bbddf]"}`}
     >
       {children}
     </Link>

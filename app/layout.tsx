@@ -9,7 +9,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: "Mavoid | Portfolio",
+  title: "MaVoid | Portfolio",
   description: "Explore our innovative technology projects and solutions",
   icons: {
     icon: "/favicon.ico",

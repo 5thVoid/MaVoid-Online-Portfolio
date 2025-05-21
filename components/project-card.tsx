@@ -1,6 +1,4 @@
 "use client"
-
-import Image from "next/image"
 import { useState } from "react"
 import { ExternalLink } from "lucide-react"
 import type { Project } from "@/lib/data"
@@ -18,13 +16,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="aspect-video relative overflow-hidden">
-        <Image
+      <div className="relative w-full">
+        {/* Using a regular img tag for flexible height */}
+        <img
           src={project.image || "/placeholder.svg"}
           alt={project.title}
-          width={600}
-          height={340}
-          className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
         />
 
         <div
