@@ -6,7 +6,7 @@ deployment:
     - cd $DEPLOYPATH
     - source ~/.nvm/nvm.sh
     - nvm use 20
-    - npm install
+    - npm install --force
     - npm run build
     - echo "✅ Build completed."
     - echo "---- Deployment finished ----"
