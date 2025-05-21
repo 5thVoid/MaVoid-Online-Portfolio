@@ -92,7 +92,7 @@ export const projects: Project[] = [
     id: "11",
     title: "E-Commerce Web App",
     description: "A Cosmetics E-Commerce.",
-    image: "/seoulskin/home.png",
+    image: "/seoulskin/Home.png",
     category: "Seoul Skin",
     link: "https://jadevine.store",
   },  
