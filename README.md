@@ -1,16 +1,7 @@
 # MaVoid Online Portfolio
 
 <p align="center">
-  <img src="public/seoulskin/Home.png" alt="Seoul Skin" width="900">
-</p>
-<p align="center">
-  <img src="public/kalima/servicespage.png" alt="Kalima" width="900">
-</p>
-<p align="center">
-  <img src="public/hercules/MealPlans1.png" alt="Hercules" width="900">
-</p>
-<p align="center">
-  <img src="public/jadevine/1.png" alt="Jadevine" width="900">
+  <img src="docs/hero.png" alt="MaVoid" width="900">
 </p>
 
 The public portfolio site for MaVoid — a filterable gallery of the work and products, in one place.
